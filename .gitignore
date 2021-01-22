@@ -4,5 +4,9 @@
 *.log
 *.dll
 
+# Unity assets stuff
+Library/*
+Temp/
+
 # stupid Mac OS stuff
 *.DS_Store
