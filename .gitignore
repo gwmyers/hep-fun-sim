@@ -5,7 +5,7 @@
 *.dll
 
 # Unity assets stuff
-Library/*
+Library/
 Temp/
 
 # stupid Mac OS stuff
