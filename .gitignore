@@ -1,0 +1,5 @@
+# Unity meta files, logs, libraries and binary stuffs
+*.meta
+*.bin
+*.log
+*.dll
