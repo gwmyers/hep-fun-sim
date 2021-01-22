@@ -1,5 +1,8 @@
-# Unity meta files, logs, libraries and binary stuffs
+# Unity meta files, logs, libraries and binary stuff
 *.meta
 *.bin
 *.log
 *.dll
+
+# stupid Mac OS stuff
+*.DS_Store
