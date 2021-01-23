@@ -2,24 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InitialStateA : MonoBehaviour
+public class InitialStateA : ProtonInitialState
 {
-    public GameObject ProtonBunchA;
-    public Rigidbody rb;
-
-    // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        base.Start();
+
+        base.initialPosition = new Vector3(-6, 2, 2);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-
-            rb.velocity = new Vector3(10, 0, 0);
-        }
+        base.Update();
     }
 }
