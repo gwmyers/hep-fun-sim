@@ -80,6 +80,12 @@ public class ProtonInitialState : MonoBehaviour
             Reset();
         }
 
+        // quit application on escape:
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
+
     }
 
     /// <summary>
@@ -107,11 +113,14 @@ public class ProtonInitialState : MonoBehaviour
         canReset = false;
     }
 
+    /// <summary>
+    /// Set proton bunch material render alpha
+    /// </summary>
+    /// <param name="newAlpha"> alpha value to set </param>
     public virtual void SetProtonBunchRenderAlpha(float newAlpha)
     {
         Renderer r = ProtonBunchObj.GetComponent<Renderer>();
         Color materialColor= r.material.color;
         r.material.color = new Color(materialColor.r, materialColor.g, materialColor.b, newAlpha);
-
     }
 }
