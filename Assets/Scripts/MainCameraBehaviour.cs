@@ -5,7 +5,8 @@ using UnityEngine;
 public class MainCameraBehaviour : MonoBehaviour
 {
     public GameObject mainCamera;
-    protected Vector3 initialPosition = new Vector3(0, 2, -15);
+    protected GameObject[] pauseObjects;
+    public Vector3 initialPosition = new Vector3(0, 2, -15);
     protected Quaternion initialRotation = Quaternion.identity;
 
     protected Vector3 translationPosIncrement = new Vector3(1, 1, 1);
@@ -17,7 +18,8 @@ public class MainCameraBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
+        Reset();
     }
 
     // Update is called once per frame
@@ -38,8 +40,7 @@ public class MainCameraBehaviour : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            isPaused = !isPaused;
-            Time.timeScale = isPaused? 0.0f : 1.0f;
+            PauseGame();
         }
 
         // reset to initial state with 'R' key:
@@ -47,6 +48,12 @@ public class MainCameraBehaviour : MonoBehaviour
         {
             shouldAdjustCamera = false;
             Reset();
+        }
+
+        // quit application on escape:
+        if (Input.GetKey("escape"))
+        {
+            QuitGame();
         }
     }
 
@@ -57,13 +64,29 @@ public class MainCameraBehaviour : MonoBehaviour
     {
         mainCamera.transform.position = initialPosition;
         mainCamera.transform.rotation = initialRotation;
+        isPaused = false;
+        foreach (GameObject g in pauseObjects)
+        {
+            g.SetActive(isPaused);
+        }
     }
 
     /// <summary>
     /// stop time in the game for physics objects
     /// </summary>
-    protected virtual void PauseGame()
+    public void PauseGame()
     {
+        isPaused = !isPaused;
+        Time.timeScale = isPaused ? 0.0f : 1.0f;
 
+        foreach (GameObject g in pauseObjects)
+        {
+            g.SetActive(isPaused);
+        }
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
